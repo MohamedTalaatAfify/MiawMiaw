@@ -6,7 +6,6 @@ import { catchError, throwError } from 'rxjs';
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
     const router = inject(Router);
     const token = localStorage.getItem('token');
-    console.log(token);
     const authReq = token ? req.clone({ setHeaders: { Authorization: `Bearer ${token}` } }) : req;
 
     return next(authReq).pipe(
