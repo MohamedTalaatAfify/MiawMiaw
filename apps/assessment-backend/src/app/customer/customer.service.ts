@@ -21,36 +21,23 @@ export class CustomerService {
       email: email.toLowerCase(),
       password: password,
       phoneNumber: phoneNumber,
+      tokens: []
     });
     let token;
-    let validTokens;
     let expirationTime = { expiresIn: 8 * 60 * 60 };
+    token = jwt.sign(
+      {
+        email: customer.email,
+        id: customer._id,
+        role: "customer",
+      },
+      this.secretKey,
+      expirationTime
+    );
+    customer.tokens.push(token);
     customer
     .save()
     .then(async (customer) => {
-      token = jwt.sign(
-        {
-          email: customer.email,
-          id: customer._id,
-          role: "customer",
-        },
-        this.secretKey,
-        expirationTime
-      );
-        validTokens = customer.tokens || [];
-        validTokens = validTokens.filter((t) => {
-            try
-            {
-              jwt.verify(t, this.secretKey);
-              return true;
-            } catch (error)
-            {
-                return false;
-            }
-        });
-        await this.customerModel.findByIdAndUpdate(customer._id, {
-          tokens: [...validTokens, token],
-        });
         res.status(200).json({ firstName:customer.firstName, lastName: customer.lastName, phoneNumber: customer.phoneNumber, email: customer.email, token, expirationTime: Number(expirationTime.expiresIn) });
       })
       .catch((error) => {
