@@ -5,15 +5,6 @@ import { catchError, last, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 
-// export interface User {
-//     _id?: string;
-//     username: string;
-//     email: string;
-//     password: string;
-//     createdAt?: Date;
-//     updatedAt?: Date;
-// }
-
 @Injectable({
     providedIn: 'root'
 })
