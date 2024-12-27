@@ -27,6 +27,9 @@ export class Customer extends Document {
 
     @Prop()
     OTP?: string;
+
+    @Prop()
+    otpAttemptNumber?: number;
 }
 
 export const CustomerSchema = SchemaFactory.createForClass(Customer);
