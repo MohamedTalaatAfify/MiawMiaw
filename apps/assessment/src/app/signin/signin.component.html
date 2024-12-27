@@ -1,0 +1,28 @@
+<div class="signup-signin-view-container">
+    <div class="signup-signin-project-name-container">
+        <p class="signup-signin-project-name project-name">Miaw Miaw</p>
+    </div>
+    <div class="signup-signin-content-container">
+        <h1 class="signup-signin-header">Sign In</h1>
+        <div class="signup-signin-form-container">
+            <form [formGroup]="signinForm" class="signup-signin-form">
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput formControlName="email" (ngModelChange)="signinForm.get('email')?.markAsTouched()">
+                    <mat-error *ngIf="signinForm.get('email')?.hasError('email')">
+                        Not a valid email.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput formControlName="password">
+                </mat-form-field>
+                <mat-error *ngIf="signinRequestErrorObj.errorFlag">{{signinRequestErrorObj.status == 401 ? 'Invalid email or password.' : 'Something went wrong. Please try again.'}}</mat-error>
+                <!-- <small><a routerLink="/forgotpassword">Forgot Password?</a></small> -->
+            </form>
+            <button mat-raised-button [disabled]="signinForm.invalid || signinForm.pending" (click)="signin()">Sign In</button>
+        </div>
+        <p>Don't have an account? <a routerLink="/signup">Sign Up</a></p>
+    </div>
+</div>
+

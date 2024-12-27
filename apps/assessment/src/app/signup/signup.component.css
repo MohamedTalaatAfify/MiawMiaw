@@ -1,0 +1,7 @@
+.signup-name-form-fields-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 2vw;
+    justify-content: space-evenly;
+}

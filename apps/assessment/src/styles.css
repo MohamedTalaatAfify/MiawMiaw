@@ -1,1 +1,150 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body { 
+    height: 100%;
+}
+
+body {
+    background-image: url('assets/background.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.signup-signin-view-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.signup-signin-project-name-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signup-signin-project-name {
+    margin-top: 8vh;
+}
+
+.project-name {
+    font-weight: bolder;
+    font-size: x-large;
+    font-family:'Courier New', Courier, monospace;
+}
+
+.signup-signin-content-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5vh;
+    box-shadow: -4px 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.signup-signin-header {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+}
+
+.signup-signin-form-container {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.signup-signin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2.6vh;
+}
+
+.signup-signin-form-container mat-form-field {
+    opacity: 70%;
+    width: 100%;
+}
+
+.signup-signin-form-container button {
+    width: 100%;
+    color: rgb(67, 103, 85) !important;
+}
+
+.signup-signin-view-container a {
+    color: rgb(102,49,4);
+}
+
+
+
+/* Medium screens (Tablets and smaller desktops) */
+@media (max-width: 1024px) {
+    .signup-signin-project-name-container {
+        width: 40%;
+    }
+
+    .signup-signin-content-container {
+        width: 60%;
+    }
+}
+
+/* Small screens (Phones) */
+@media (max-width: 768px) {
+    .signup-signin-view-container {
+        flex-direction: column;
+    }
+
+    .signup-signin-project-name-container {
+        width: 100%;
+        height: 40%;
+        position: relative;
+    }
+
+    .signup-signin-content-container {
+        width: 100%;
+        height: 60%;
+        position: relative;
+    }
+
+    .signup-signin-project-name {
+        margin-top: 4vh;
+        margin-bottom: 3vh;
+    }
+}
+
+/* Extra small screens (Phones in portrait mode) */
+@media (max-width: 480px) {
+    .signup-signin-project-name-container {
+        height: 30%;
+    }
+
+    .signup-signin-content-container {
+        height: 70%;
+        gap: 3vh;
+    }
+
+    .signup-signin-form-container {
+        width: 95%;
+    }
+
+    .signup-signin-header {
+        font-size: 1.5rem;
+    }
+}

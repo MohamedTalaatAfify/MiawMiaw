@@ -1,0 +1,8 @@
+.custom-toolbar {
+    height: 6vh;
+    background: linear-gradient(to right, rgb(103,108,68), rgb(123,166,153));
+}
+
+.toolbar-spacer {
+    flex: 1 1 auto;
+}

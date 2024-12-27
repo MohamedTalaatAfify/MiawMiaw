@@ -1,0 +1,66 @@
+<div class="signup-signin-view-container">
+    <div class="signup-signin-project-name-container">
+        <p class="signup-signin-project-name project-name">Miaw Miaw</p>
+    </div>
+    <div class="signup-signin-content-container">
+        <h1 class="signup-signin-header">Sign Up</h1>
+        <div class="signup-signin-form-container">
+            <form [formGroup]="signupForm" class="signup-signin-form">
+                <div class="signup-name-form-fields-container">
+                    <mat-form-field>
+                        <mat-label>First Name</mat-label>
+                        <input type="text" matInput formControlName="firstName" (ngModelChange)="signupForm.get('firstName')?.markAsTouched()">
+                        <mat-error *ngIf="signupForm.get('firstName')?.hasError('maxlength')">
+                            First Name cannot be more than 20 characters.
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Last Name</mat-label>
+                        <input type="text" matInput formControlName="lastName" (ngModelChange)="signupForm.get('lastName')?.markAsTouched()">
+                        <mat-error *ngIf="signupForm.get('lastName')?.hasError('maxlength')">
+                            Last Name cannot be more than 20 characters.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput formControlName="email" (ngModelChange)="signupForm.get('email')?.markAsTouched()">
+                    <mat-error *ngIf="signupForm.get('email')?.hasError('email')">
+                        Enter a valid email.
+                    </mat-error>
+                    <mat-error *ngIf="signupForm.get('email')?.hasError('maxlength')">
+                        Email cannot be more than 50 characters.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Phone Number</mat-label>
+                    <input type="text" matInput formControlName="phoneNumber" (ngModelChange)="signupForm.get('phoneNumber')?.markAsTouched()">
+                    <mat-error *ngIf="signupForm.get('phoneNumber')?.hasError('invalidPhoneNumber')">
+                        Enter a valid phone number.
+                    </mat-error>
+                    <mat-error *ngIf="signupForm.get('phoneNumber')?.hasError('maxlength')">
+                        Phone Number cannot be more than 20 characters.
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput formControlName="password" (ngModelChange)="onPasswordChange();signupForm.get('password')?.markAsTouched()">
+                    <mat-error *ngIf="signupForm.get('password')?.hasError('weakPassword')">
+                        {{ 'Password must be between 8 and 16 characters, contain at least one lowercase letter, one uppercase letter, one number, and one special character (e.g., @$!%*?&.).' }}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Confirm Password</mat-label>
+                    <input type="password" matInput formControlName="confirmPassword" (ngModelChange)="signupForm.get('confirmPassword')?.markAsTouched()">
+                    <mat-error *ngIf="signupForm.get('confirmPassword')?.hasError('passwordMismatch')">
+                        Passwords do not match.
+                    </mat-error>
+                </mat-form-field>
+                <mat-error *ngIf="signupRequestErrorObj.errorFlag">{{signupRequestErrorObj.status == 409 ? 'User already exists. Please sign in or use a different email.' : 'Something went wrong. Please try again.'}}</mat-error>
+            </form>
+            <button mat-raised-button [disabled]="signupForm.invalid || signupForm.pending" (click)="signup()">Sign Up</button>
+        </div>
+        <p>Already have an account? <a routerLink="/signin">Sign In</a></p>
+    </div>
+</div>
+
